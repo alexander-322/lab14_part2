@@ -89,6 +89,7 @@ sequenceDiagram
 
 ```bash
 cd ~
+rm -rf lab14_part2
 git clone https://github.com/Mohanad0101/lab14_part2.git lab14_part2
 cd lab14_part2
 ```
