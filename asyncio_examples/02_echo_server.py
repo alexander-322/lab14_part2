@@ -82,7 +82,25 @@ async def handle_echo(reader, writer):
     #        await writer.wait_closed()
 
     # --- Ваш код здесь ---
-    pass
+    # 1. Чтение данных
+    data = await reader.read(1024)
+    if not data:
+        return
+
+    # 2. Декодирование
+    message = data.decode()
+
+    # 3. Логирование
+    addr = writer.get_extra_info('peername')
+    print(f"Подключение от {addr}, сообщение: '{message}'")
+
+    # 4. Отправка обратно
+    writer.write(data)
+    await writer.drain()
+
+    # 5. Закрытие соединения
+    writer.close()
+    await writer.wait_closed()
     # --- Конец вашего кода ---
 
 

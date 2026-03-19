@@ -92,7 +92,21 @@ def handle_client(conn, addr):
     #        print(f"[PID {os.getpid()}] Клиент {addr} отключён")
 
     # --- Ваш код здесь ---
-    pass
+    # 1. Вывод PID
+    print(f"[PID {os.getpid()}] Клиент {addr} подключён")
+
+    # 2. Чтение данных
+    data = conn.recv(1024)
+
+    # 3. Вывод полученного сообщения
+    print(f"[PID {os.getpid()}] Получено: '{data.decode()}'")
+
+    # 4. Отправка обратно
+    conn.sendall(data)
+
+    # 5. Закрытие соединения
+    conn.close()
+    print(f"[PID {os.getpid()}] Клиент {addr} отключён")
     # --- Конец вашего кода ---
 
 
